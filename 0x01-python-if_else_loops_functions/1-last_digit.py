@@ -3,8 +3,7 @@ import random
 number = random.randint(-10000, 10000)
 
 last = number % 10
-if last < 0:
-    last = -(last)
+last = -(last)
 
 if last > 5:
     string = "and is greater than 5"
