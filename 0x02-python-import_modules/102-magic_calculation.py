@@ -9,8 +9,4 @@ def magic_calculation_102(a, b):
             c = add(c, i)
         return c
     else:
-        return sub(a, b)
-
-    if __name__ == "__main__":
-        import dis
-        dis.dis(magic_calculation)
+        return (sub(a, b))
