@@ -8,7 +8,7 @@ if __name__ == "__main__":
     sign = argv[2]
     lenght = len(argv) - 1
     if (lenght != 3):
-        print("Usage:{:s} <a> <operator> <b>")
+        print("Usage:./100-my_calculator.py <a> <operator> <b>")
         exit(1)
     if sign == '+':
         print("{:d} + {:d} = {:d}".format(a, b, add(a, b)))
