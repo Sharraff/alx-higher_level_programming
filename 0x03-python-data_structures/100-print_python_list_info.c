@@ -1,5 +1,7 @@
 #include <Python.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <stddef.h>
 
 /**
  * print_python_list_info - A function that prints information about
@@ -9,18 +11,14 @@
  */
 void print_python_list_info(PyObject *p)
 {
-	PyListObject *py_list = NULL;
-	size_t len = 0, i = 0;
-	const char *py_type = NULL;
+	int i;
 
+	printf("[*] Size of the python List = %ld\n", Py_Size(p));
+	printf("[*] Allocated = %ld\n", ((PyListObject *)p)->allocated);
 
-	len = PyList_Size(p);
-	pylist = (PylistObject *)p;
-	printf("[*] Size of the python List = %ld\n", len);
-	printf("[*] Allocated = %ld\n", (signed long)(py_list->allocated));
-	for (; i< len; i++)
+	for (i = 0, i < Py_Size(p); i++)
 	{
-		py_type = Py_TYPE(py_list->ob_item[i])->tp_name;
-		printf("Element %ld: %s\n", i, py_type);
+		printf("Element %d: %s\n", is Py_TYPE(PyList_GetItem(p, i))->tp_name);
 	}
+
 }
