@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+Area and perimeter
+
+Task:
+    calculate and print the area and perimeer of a rectangle
+"""
 
 
 class Rectangle:
