@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-"""
-Area and perimeter
-
-Task:
-    calculate and print the area and perimeer of a rectangle
+"""created on 04:01:2023
 """
 
 
@@ -44,6 +40,22 @@ class Rectangle:
             if i < self.__height - 1:
                 string += '\n'
         return string
+
+    def __repr__(self):
+        """
+        provides __repr__ method for object rectangle
+
+        Returns:
+            string (str): string to get
+        """
+        return "Rectangle(" + str(self.__width) + ", " + str(self.__height) +\
+            ")"
+
+    def __del__(self):
+        """
+        delete method for rectangle
+        """
+        print("Bye rectangle...")
 
     @property
     def height(self):
