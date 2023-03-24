@@ -1,28 +1,27 @@
 #!/usr/bin/python3
 # -*- encoding: utf-8 -*-
-import MySQLdb
-import sys
-
 """
 created on 19 march 2023
 @author: Musharraff Ibrahim
 """
 
 
-if __name__ == '__main__':
-    args = sys.argv
+def main(args):
+    # gets state stuff by N
     if len(args) != 4:
-        print("Usage: {} username password database_name".format(args[0]))
-        exit(1)
-    username = args[1]
-    password = args[2]
-    data = args[3]
-    db = MySQLdb.connect(host='localhost', user=username,
-            passwd=password, db=data, port=3306)
+        raise Exception("need 3 arguments!")
+    db = MySQLdb.connect(host='localhost',
+                         user=args[1],
+                         passwd=args[2],
+                         db=args[3])
     cur = db.cursor()
-    cur.execute("SELECT * FROM states WHERE name LIKE BINARY '%N' ORDER BY id ASC;")
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
-    cur.close()
-    db.close()
+    cur.execute(
+        "SELECT * FROM states WHERE name like binary 'N%' ORDER BY id ASC")
+    states = cur.fetchall()
+    for state in states:
+        print(state)
+
+if __name__ == "__main__":
+    import sys
+    import MySQLdb
+    main(sys.argv)
