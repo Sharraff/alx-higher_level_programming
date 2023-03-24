@@ -1,29 +1,24 @@
 #!/usr/bin/python3
-# -*- encoding: utf-8 -*-
-import MySQLdb
-import sys
+# gets all states via python yee boi with your own state
 
-"""
-created on 19 march 2023
-@author: Musharraff Ibrahim
-"""
-
-
-if __name__ == '__main__':
-    args = sys.argv
-    if len(args) != 4:
-        print("Usage: {} username password database_name".format(args[0]))
-        exit(1)
-    username = args[1]
-    password = args[2]
-    data = args[3]
-    db = MySQLdb.connect(host='localhost', user=username,
-            passwd=password, db=data, port=3306)
+def main(args):
+    # gets all state stuff by N
+    if len(args) != 5:
+        raise Exception("need 4 arguments!")
+    db = MySQLdb.connect(host='localhost',
+                         user=args[1],
+                         passwd=args[2],
+                         db=args[3])
     cur = db.cursor()
-    cur.execute("SELECT * FROM states WHERE states.name LIKE BINARY\
-            '{}' ORDER BY states.id;".format(state_name))
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
-    cur.close()
-    db.close()
+    cur.execute(
+        "SELECT * FROM WHERE name LIKE '{}' ORDER BY id ASC"
+        .format(args[4]))
+    states = cur.fetchall()
+    for state in states:
+        if state[1] == args[4]:
+            print(state)
+
+if __name__ == "__main__":
+    import sys
+    import MySQLdb
+    main(sys.argv)
