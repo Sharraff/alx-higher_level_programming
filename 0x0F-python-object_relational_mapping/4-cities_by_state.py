@@ -15,7 +15,7 @@ if __name__ == "__main__":
          passwd=argv[2], db=argv[3])
 
     curs = db.cursor()
-    curs.execute("SELECT cities,id, cities.name, states.name FROM states\
+    curs.execute("SELECT cities.id, cities.name, states.name FROM states\
                   INNER JOIN cties ON states.id = cities.states_id
                   ORDER BY cities.id ASC")
     for row in curs.fetchall():
