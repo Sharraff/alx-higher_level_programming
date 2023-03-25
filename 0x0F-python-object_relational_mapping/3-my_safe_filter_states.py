@@ -1,29 +1,28 @@
 #!/usr/bin/python3
-# -*- encoding: utf-8 -*-
+
+"""
+Script displays states in a table in a database
+with search filter
+argv[1] should be user to access db
+argv[2] should be password to access db
+argv[3] should be the database
+argv[4] is  search term
+"""
+
 import MySQLdb
-import sys
-
-"""
-created on 19 march 2023
-@author: Musharraff Ibrahim
-"""
+from sys import argv
 
 
-if __name__ == '__main__':
-    args = sys.argv
-    if len(args) < 4:
-        print("Usage: {} username password database_name".format(args[0]))
-        exit(1)
-    username = args[1]
-    password = args[2]
-    data = args[3]
-    db = MySQLdb.connect(host='localhost', user=username,
-            passwd=password, db=data, port=3306)
-    cur = db.cursor()
-    cur.execute("SELECT * FROM states WHERE states.name LIKE BINARY\
-            %s ORDER BY states.id;".format(state_name))
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
-    cur.close()
+if __name__ == "__main__":
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+                         passwd=argv[2], db=argv[3])
+
+    curs = db.cursor()
+    curs.execute("SELECT * FROM states WHERE name='{}' ORDER BY id ASC"
+                  .format(argv[4]))
+
+    for row in curs.fetchall():
+        if row[1] == argv[4]:
+            print(row)
+    curs.close()
     db.close()
