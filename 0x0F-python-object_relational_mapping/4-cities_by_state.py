@@ -1,31 +1,25 @@
 #!/usr/bin/python3
-# -*- encoding: utf-8 -*-
+"""
+Script displays cities in cities table
+in a database.
+argv[1] -> user
+argv[2] -> password
+argv[3] -> the database
+"""
+
 import MySQLdb
-import sys
+from sys import argv
 
-"""
-created on 19 march 2023
-@author: Musharraff Ibrahim
-"""
+if __name__ == "__main__":
+    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
+         passwd=argv[2], db=argv[3])
 
-
-if __name__ == '__main__':
-    args = sys.argv
-    if len(args) < 4:
-        print("Usage: {} username password database_name".format(args[0]))
-        exit(1)
-    username = args[1]
-    password = args[2]
-    data = args[3]
-    db = MySQLdb.connect(host='localhost', user=username,
-            passwd=password, db=data, port=3306)
-    cur = db.cursor()
-    cur.execute("SELECT cities.id, cities.name, states.name\
-            FROM cities INNER JOIN states\
-            ON cities.state_id=states.id\
-            ORDER BY cities.id;")
-    rows = cur.fetchall()
-    for row in rows:
+    curs = db.cursor()
+    curs.execute("SELECT cities,id, cities.name, states.name FROM states\
+                  INNER JOIN cties ON states.id = cities.states_id
+                  ORDER BY cities.id ASC")
+    for row in curs.fetchall():
         print(row)
-    cur.close()
+
+    curs.close()
     db.close()
