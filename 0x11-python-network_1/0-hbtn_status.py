@@ -3,14 +3,15 @@
 """
 Created on Mon Aug 24 05:14:59 2020
 """
-from urllib.request import urlopen
+import urllib.request
 
 
 if __name__ == "__main__":
-    url = 'https://intranet.hbtn.io/status'
-    with urlopen(url) as response:
-        bytes_content = response.read()
-        content = bytes_content.decode('utf-8')
-        string = 'Body response:\n\t- type: {}\n\t- content: {}\n\t- \
-            utf8 content: {}'.format(type(bytes_content), bytes_content, content)
-        print(string)
+    with urllib.request.urlopen("https://intranet.hbtn.io/status") as response:
+        content = response.read()
+        url = content.decode('utf-8')
+        typed = response.info()
+        print("Body response:")
+        print("\t- type: {}".format(type(content)))
+        print("\t- content: {}".format(content))
+        print("\t- utf8 content: {}".format(url))
