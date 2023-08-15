@@ -5,4 +5,3 @@ if (integer) {
 } else {
   console.log('Not a number');
 }
-
