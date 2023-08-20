@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-script that list all cities from 
+script that list all cities from
 the the database htbn_0e_0_usa
 This script should take 3 arguments:
 mysql username, mysql password,

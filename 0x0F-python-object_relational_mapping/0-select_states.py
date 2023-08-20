@@ -8,6 +8,7 @@ mysql username, mysql password and database name
 from sys import argv
 import MySQLdb
 
+
 def main():
     """
     """
@@ -19,6 +20,7 @@ def main():
         print(row)
     cursor.close()
     db.close()
+
 
 if __name__ == "__main__":
     main()
