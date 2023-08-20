@@ -11,6 +11,7 @@ from sqlalchemy import (create_engine)
 
 Base = declarative_base()
 
+
 class State(Base):
     """
     creates a state object
